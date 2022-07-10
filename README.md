@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Virtual Assistant Noa 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This proyect is a RR.HH virtual agent. It has an API REST with mongoDB database and it searchs information in this when the user order something.
 
 ## Available Scripts
 
@@ -14,10 +16,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -29,42 +27,74 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## npm Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### speech-js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Is a dependencies of nodeJS, it is a speech recognition and speech synthesis
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+npm install speech-js
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+import speech from 'speech-js'
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### react-speech-recognition
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+useSpeechRecognition is a React hook that gives a component access to a transcript of speech picked up from the user's microphone.
 
-### Code Splitting
+SpeechRecognition manages the global state of the Web Speech API, exposing functions to turn the microphone on and off.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+npm i react-speech-recognition
 
-### Analyzing the Bundle Size
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognit
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Express
 
-### Making a Progressive Web App
+Web framework of nodeJS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm i express
 
-### Advanced Configuration
+### Body-parser
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Node.js body parsing middleware.
 
-### Deployment
+Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+npm i body-parser
 
-### `npm run build` fails to minify
+var bodyParser = require('body-parser')
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Mongoose
+
+npm i mongoose
+
+Is necesary to config and connect mongoDB database
+
+### axios
+
+First is necesary to config CORS to the backend.
+
+This library can to send ajax request, to connect backend to the frontend
+
+npm i axios
+
+import axios from 'axios'
+
+### Environment Variables -Dotenv
+
+Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. 
+
+npm install dotenv --save
+
+
+## Deployment
+
+### `npm run build` 
+
+### Deployment backend, database and frontend
+
+The server deployment is done with heroku cli
+
+The database deployment is done with mongoDB Atlas
+
+The frontend deployment is done with netlify
