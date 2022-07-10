@@ -43,27 +43,43 @@ const errorMessage=()=>{
   speech.synthesis(result, 'es-ES')
   }
 }
-//The virtual agent listen the user
-//Comands are the intents, the training to the bot
+//search employee
+const busqueda=(persona)=>{
+  let resultadoEmpleados;
+  let primeraLetra=persona.substring(0,1).toUpperCase();
+  let restoPalabra=persona.substring(1,persona.length);
+  let palabraTotal=primeraLetra+restoPalabra;
+  console.log("Apellidos : " +palabraTotal);
+  axios.get('http://localhost:3500/api/ver/'+palabraTotal)
+  .then(res=>{
+    
+    resultadoEmpleados=(res.data.resultado);
+    console.log(resultadoEmpleados)
+    for(let i of resultadoEmpleados){
+      
+      speech.synthesis("Nombre del empleado "+i.nombre+". Apellidos del empleado "+i.apellidos+". Departamento "+i.departamento+". Fecha de ingreso en la empresa: "+i.fecha_alta+". Número de la seguridad social: "+i.seguridadsocial+". Ofício "+i.oficio+". Salario "+i.salario+"euros . Teléfono de contacto "+i.telefono)
+      
+      const recognition = speech.recognition('es-ES') 
+      recognition.start()
+      recognition.onresult = e => {
+      let result = e.results[0][0].transcript
+      speech.synthesis(result, 'es-ES')
+      }
+    }
+    
+  });
+  
+  
+}
+//The virtual agent listens the user
+//Comamnds are the intents, the training to the bot
 const Dictaphone = () => {
 
   const [message, setMessage] = useState('')
-  const [busca, setBusca] = useState([]);
 
-  const busqueda=(persona)=>{
-    console.log("Apellidos : " +persona);
-    axios.get('http://localhost:3500/api/ver',{
-      apellidos:persona
-    })
-    .then(res=>{
-      setBusca(res.data.resultado);
-    })
-    console.log(busca);
-  
-  }
 
   console.log("Listening")
-  
+ 
   
   const commands = [
     {
