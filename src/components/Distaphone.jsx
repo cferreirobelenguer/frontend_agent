@@ -5,6 +5,7 @@ import speech from 'speech-js'
 import axios from 'axios'
 
 
+
 //The virtual agent says hello to the user
 const saludar=()=>{
   
@@ -29,6 +30,7 @@ const despedida=()=>{
   speech.synthesis(result, 'es-ES')
   }
 }
+
 //error message
 const errorMessage=()=>{
   
@@ -44,15 +46,29 @@ const errorMessage=()=>{
 //The virtual agent listen the user
 //Comands are the intents, the training to the bot
 const Dictaphone = () => {
+
   const [message, setMessage] = useState('')
+  const [busca, setBusca] = useState([]);
+
+  const busqueda=(persona)=>{
+    console.log("Apellidos : " +persona);
+    axios.get('http://localhost:3500/api/ver',{
+      apellidos:persona
+    })
+    .then(res=>{
+      setBusca(res.data.resultado);
+    })
+    console.log(busca);
+  
+  }
 
   console.log("Listening")
   
   
   const commands = [
     {
-      command: 'I would like to order *',
-      callback: (food) => setMessage(`Your order is for: ${food}`)
+      command: 'Busca *',
+      callback: (persona) => setMessage(busqueda(persona))
     },
     {
       command: ['adiós', 'hasta otra', 'luego hablamos','hasta luego'],
