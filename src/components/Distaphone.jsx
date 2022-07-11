@@ -168,7 +168,7 @@ const Dictaphone = () => {
   }
 
   return (
-    <div className="contenedor">
+    <div className="contenedor" id="funciones">
       <div className="portadaTexto">
       <div className="portada">
         <h1>Más tiempo<br></br>para<br></br>lo que<br></br>importa</h1>
@@ -184,7 +184,7 @@ const Dictaphone = () => {
       </div>
       </div>
       <div className="imagen">
-        <img src={imagenPortada} width="700" height="500" alt="portada"/>
+        <img src={imagenPortada} width="400" height="300" className="img-fluid" alt="portada"/>
       </div>
     </div>
   )

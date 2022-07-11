@@ -1,11 +1,21 @@
-
+@font-face {
+  font-family: "roboto";
+  src: url("../src/assets/fonts/RobotoFlex-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+/*component Distaphone*/
 .contenedor{
   padding-top: 50px;
-  display:grid;
-  gap:7rem;
-  grid-auto-flow:dense;
-  grid-auto-rows:50 rem;
-  grid-template-columns: repeat(auto-fill, minmax(15rem,1fr));
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.portadaTexto{
+  display:flex;
+  justify-content:left;
+  flex-direction: column;
 }
 .button{
   text-align: center;
@@ -17,29 +27,51 @@
   background-color: #FFDE6A;
   font-size: 1.5vw;
   
-
 }
 .boton{
   text-align: left;
-  padding-left: 90px;
+  padding-left: 20px;
 }
 .portada{
   font-family: Open Sans,'Helvetica','Arial',sans-serif;
   margin:30px;
   text-align: left;
-  padding-left: 90px;
+  padding-left: 20px;
+  font-size: 4vw;
 
 }
 .parrafo{
   font-family: Open Sans,'Helvetica','Arial',sans-serif;
   margin:30px;
   text-align: left;
-  padding-left: 90px;
+  padding-left: 20px;
+  font-size: 1.5vw;
 }
 .imagen{
   padding: 20px;
-  width:20vw;
-  height:20vw
 }
 
+@media only screen and (max-width: 800px) {
+
+  .contenedor{
+    padding-top: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+  }
+
+}
+
+/*Header*/
+
+.contenidoNavegacion{
+  text-align: center;
+  font-family: "roboto";
+  font-size: 1.5vw;
+  color: black;
+}
+.logo{
+  padding-left: 50px;
+}
 
