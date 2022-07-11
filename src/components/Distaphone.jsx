@@ -5,7 +5,6 @@ import speech from 'speech-js'
 import axios from 'axios'
 
 
-
 //The virtual agent says hello to the user
 const saludar=()=>{
   
@@ -21,7 +20,7 @@ const saludar=()=>{
 //The virtual agent says goodbye to the user
 const despedida=()=>{
   
-  speech.synthesis(`Adiós, ¡Sabes que estoy para lo que necesites!`, 'es-ES') // speech synthesis module
+  speech.synthesis(`Adiós, ¡estoy para lo que necesites!`, 'es-ES') // speech synthesis module
 
   const recognition = speech.recognition('es-ES') // speech recognition module
   recognition.start()
@@ -74,16 +73,16 @@ const busqueda=(persona)=>{
 //The virtual agent listens the user
 //Comamnds are the intents, the training to the bot
 const Dictaphone = () => {
-
+  
   const [message, setMessage] = useState('')
 
 
   console.log("Listening")
- 
+
   
   const commands = [
     {
-      command: 'Busca *',
+      command: 'Busca el empleado *',
       callback: (persona) => setMessage(busqueda(persona))
     },
     {
@@ -91,12 +90,12 @@ const Dictaphone = () => {
       callback: () => setMessage(despedida())
     },
     {
-      command: 'My top sports are * and *',
-      callback: (sport1, sport2) => setMessage(`#1: ${sport1}, #2: ${sport2}`)
+      command: 'Introduce los datos del siguiente empleado: nombre * , apellidos * , oficio * , departamento * , fecha de alta * , salario * , seguridad social * , teléfono * ',
+      callback: (nombre, apellidos, oficio, departamento, fecha_alta, salario, seguridadsocial, telefono  ) => setMessage(`#1: ${nombre}, #2: ${apellidos}`)
     },
     {
-      command: 'Pass the salt (please)',
-      callback: () => setMessage('My pleasure')
+      command: 'Eliminar el empleado *',
+      callback: (empleado) => setMessage(`empleado ${empleado} eliminado`)
     },
     {
       command: ['hola', 'saludos', 'buenos días','buenas tardes', 'Noa'],
@@ -117,7 +116,6 @@ const Dictaphone = () => {
   if (!browserSupportsSpeechRecognition) {
     return errorMessage();
   }
-  
 
   return (
     <div>
