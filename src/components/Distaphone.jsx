@@ -20,7 +20,8 @@ const saludar=()=>{
 //The virtual agent says goodbye to the user
 const despedida=()=>{
   
-  speech.synthesis(`Adiós, ¡estoy para lo que necesites!`, 'es-ES') // speech synthesis module
+  speech.synthesis(`Adiós, ¡rt
+  estoy para lo que necesites!`, 'es-ES') // speech synthesis module
 
   const recognition = speech.recognition('es-ES') // speech recognition module
   recognition.start()
@@ -43,13 +44,10 @@ const errorMessage=()=>{
   }
 }
 //search employee
-const busqueda=(persona)=>{
+const busqueda=(nombre,apellidos)=>{
   let resultadoEmpleados;
-  let primeraLetra=persona.substring(0,1).toUpperCase();
-  let restoPalabra=persona.substring(1,persona.length);
-  let palabraTotal=primeraLetra+restoPalabra;
-  console.log("Apellidos : " +palabraTotal);
-  axios.get('http://localhost:3500/api/ver/'+palabraTotal)
+  
+  axios.get('http://localhost:3500/api/ver/'+nombre+'&'+apellidos)
   .then(res=>{
     
     resultadoEmpleados=(res.data.resultado);
@@ -70,6 +68,55 @@ const busqueda=(persona)=>{
   
   
 }
+//delete employee
+const eliminarEmpleado=(nombre,apellidos)=>{
+  let resultadoEliminacion;
+  
+  axios.delete('http://localhost:3500/api/delete/'+nombre+'&'+apellidos)
+  .then(res=>{
+    
+    resultadoEliminacion=(res.data.resultado);
+    console.log(resultadoEliminacion)
+    
+    speech.synthesis(`El empleado ${nombre} ${apellidos} ha sido eliminado del sistema`)
+      
+    const recognition = speech.recognition('es-ES') 
+    recognition.start()
+    recognition.onresult = e => {
+    let result = e.results[0][0].transcript
+    speech.synthesis(result, 'es-ES')
+    }
+    
+    
+  });
+  
+  
+}
+/*
+const generarPDF=(nombre,apellidos)=>{
+  
+  let resultadoEmpleados;
+
+  axios.get('http://localhost:3500/api/ver/'+nombre+'&'+apellidos)
+  .then(res=>{
+    
+    resultadoEmpleados=(res.data.resultado);
+    console.log(resultadoEmpleados)
+    for(let i of resultadoEmpleados){
+      
+      
+      }
+
+      speech.synthesis(`Informe generado del empleado ${nombre} ${apellidos}`)
+      
+      const recognition = speech.recognition('es-ES') 
+      recognition.start()
+      recognition.onresult = e => {
+      let result = e.results[0][0].transcript
+      speech.synthesis(result, 'es-ES')
+      }
+    });
+  }*/
 //The virtual agent listens the user
 //Comamnds are the intents, the training to the bot
 const Dictaphone = () => {
@@ -82,9 +129,10 @@ const Dictaphone = () => {
   
   const commands = [
     {
-      command: 'Busca el empleado *',
-      callback: (persona) => setMessage(busqueda(persona))
+      command: 'Busca el empleado * *',
+      callback: (nombre,apellidos) => setMessage(busqueda(nombre,apellidos)),
     },
+    
     {
       command: ['adiós', 'hasta otra', 'luego hablamos','hasta luego'],
       callback: () => setMessage(despedida())
@@ -94,8 +142,8 @@ const Dictaphone = () => {
       callback: (nombre, apellidos, oficio, departamento, fecha_alta, salario, seguridadsocial, telefono  ) => setMessage(`#1: ${nombre}, #2: ${apellidos}`)
     },
     {
-      command: 'Eliminar el empleado *',
-      callback: (empleado) => setMessage(`empleado ${empleado} eliminado`)
+      command: 'Eliminar el empleado * *',
+      callback: (nombre,apellidos) => setMessage(eliminarEmpleado(nombre,apellidos))
     },
     {
       command: ['hola', 'saludos', 'buenos días','buenas tardes', 'Noa'],

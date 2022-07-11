@@ -18,9 +18,12 @@
   "@testing-library/user-event": "^13.5.0",
   
     
-  "axios": "^0.27.2",
+  "assert": "^2.0.0",
   
     
+  "axios": "^0.27.2",
+  
+  
   "react": "^18.2.0",
   
     
@@ -111,6 +114,13 @@
   
     
   ]
+  
+  },
+  
+  "browser": {
+  
+    
+  "fs": false
   
   }
 }
