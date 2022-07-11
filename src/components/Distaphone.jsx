@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import speech from 'speech-js'
 import axios from 'axios'
+import imagenPortada from '../assets/images/portada.jpg'
+
 
 
 //The virtual agent says hello to the user
@@ -166,10 +168,24 @@ const Dictaphone = () => {
   }
 
   return (
-    <div>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      <p>{message}</p>
-      <p>{transcript}</p>
+    <div className="contenedor">
+      <div className="portadaTexto">
+      <div className="portada">
+        <h1>Más tiempo<br></br>para<br></br>lo que<br></br>importa</h1>
+      </div>
+      <div className='parrafo'>
+        <p>Noa es un software de RR.HH. todo en uno para pymes.<br></br>
+        Ahorra tiempo en los procesos</p>
+      </div>
+      <div className="boton">
+        <button className="button" onClick={SpeechRecognition.startListening}>Solicita una demo</button>
+        <p>{message}</p>
+        <p>{transcript}</p>
+      </div>
+      </div>
+      <div className="imagen">
+        <img src={imagenPortada} width="700" height="500" alt="portada"/>
+      </div>
     </div>
   )
 }
