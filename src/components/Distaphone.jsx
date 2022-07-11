@@ -178,13 +178,13 @@ const Dictaphone = () => {
         Ahorra tiempo en los procesos</p>
       </div>
       <div className="boton">
-        <button className="button" onClick={SpeechRecognition.startListening}>Solicita una demo</button>
+        <button className="button" onClick={SpeechRecognition.startListening}>Probar gratis</button>
         <p>{message}</p>
         <p>{transcript}</p>
       </div>
       </div>
       <div className="imagen">
-        <img src={imagenPortada} width="400" height="300" className="img-fluid" alt="portada"/>
+        <img src={imagenPortada} width="500" height="400" className="img-fluid" alt="portada"/>
       </div>
     </div>
   )
