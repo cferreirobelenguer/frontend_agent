@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
 }
 .portadaTexto{
   display:flex;
@@ -28,16 +28,17 @@
   background-color: #FFDE6A;
   font-size: 1.5vw;
   
+  
 }
 .boton{
   text-align: left;
-  padding-left: 30px;
+  padding-left: 50px;
 }
 .portada{
   font-family: Open Sans,'Helvetica','Arial',sans-serif;
   margin:30px;
   text-align: left;
-  padding-left: 30px;
+  padding-left: 50px;
   font-size: 4vw;
 
 }
@@ -45,7 +46,7 @@
   font-family: Open Sans,'Helvetica','Arial',sans-serif;
   margin:30px;
   text-align: left;
-  padding-left: 30px;
+  padding-left: 50px;
   font-size: 1.5vw;
 }
 .imagen{
@@ -55,7 +56,7 @@
 @media only screen and (max-width: 800px) {
 
   .contenedor{
-    padding-top: 50px;
+    padding-top: 30px;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -157,5 +158,153 @@ li{
 }
 
   
+}
+.linea{
+  margin-left: 40px;
+  margin-right: 40px;
+  width: 90vw;
+  height: 2vw;
+}
+
+/* Component Porque*/
+
+#porque{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 50px;
+  font-size: 1.5vw;
+  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  padding-bottom: 100px;
+  margin:40px
+}
+.motivos{
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5vw;
+  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  
+}
+.tituloPorque{
+  margin-bottom: 30px;
+  text-align: left;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+.subtituloPorque{
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 1.5vw;
+}
+@media only screen and (max-width: 800px) {
+
+  #porque{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 1.5vw;
+    font-family: Open Sans,'Helvetica','Arial',sans-serif;
+    
+  }
+
+}
+.imagenPorque{
+  padding: 30px;
+}
+
+/*Footer*/
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: #ffffff;
+  font-size: 1.5vw;
+}
+.copy{
+  padding: 20px;
+}
+.redes{
+  padding: 20px;
+  text-align: center;
+}
+
+
+/*container Precios*/
+
+.containerPrecios{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 1.5vw;
+  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  padding-bottom: 100px;
+  margin:40px
+}
+.tituloPrecios{
+  text-align: center;
+  font-size: 1.5vw;
+  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-weight: bold;
+  
+}
+.subtituloPrecios{
+  text-align: center;
+  font-size: 1.5vw;
+  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+}
+.imagenPrecios{
+  padding: 30px;
+}
+.contenidoPrecios{
+  text-align: center;
+  font-size: 1.5vw;
+  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  
+}
+
+/*component Contacto*/
+
+#contacto{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5vw;
+  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 100px;
+  margin: 30px;
+}
+.tituloContacto{
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 800px) {
+  #contacto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-family: Open Sans,'Helvetica','Arial',sans-serif;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 100px;
+    margin: 30px;
+    text-align: center;
+  }
+  
+
 }
 

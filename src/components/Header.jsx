@@ -17,13 +17,13 @@ const Header=()=>{
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#funciones">Funciones</a>
+                    <a className="nav-link active" aria-current="page" href="#funciones">Pruébanos</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link active" aria-current="page" href="#porque">Funciones</a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link active" aria-current="page" href="#precios">Precios</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#porque">Por qué Noa</a>
                 </li>
                 <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#contacto">Contacto</a>
@@ -43,14 +43,14 @@ const Header=()=>{
                 <i className="fas fa-times"></i><img id="hamburguesa" src={menuhamburguesa} width="80" heigth="80" className="img-fluid" alt="menu hamburguesa"/>
             <nav>
             <ul>
-                <li><a className="nav-link active" aria-current="page" href="#funciones">Funciones</a></li>
+                <li><a className="nav-link active" aria-current="page" href="#funciones">Pruébanos</a></li>
+                <li><a className="nav-link active" aria-current="page" href="#porque">Funciones</a></li>
                 <li><a className="nav-link active" aria-current="page" href="#precios">Precios</a></li>
-                <li><a className="nav-link active" aria-current="page" href="#porque">Por qué Noa</a></li>
                 <li><a className="nav-link active" aria-current="page" href="#contacto">Contacto</a></li>        
             </ul>
             </nav>
     </div>
-    
+    <hr className="linea"></hr>
     </div>
     
     
