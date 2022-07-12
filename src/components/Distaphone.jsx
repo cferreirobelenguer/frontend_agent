@@ -7,6 +7,61 @@ import imagenPortada from '../assets/images/portada.jpg'
 
 
 
+const salarioMayor=()=>{
+  
+    let resultadoEmpleados;
+    
+    axios.get('http://localhost:3500/api/buscarmax/')
+    .then(res=>{
+    
+      resultadoEmpleados=(res.data.resultadoSalarios);
+      let contador=0;
+      for(let i of resultadoEmpleados){
+        contador++;
+        console.log(i.salario)
+        
+        if(contador===1){
+          console.log(i.salario)
+          speech.synthesis("El salario más alto es "+i.salario +"euros que corresponde a "+i.nombre+ i.apellidos) // speech synthesis module
+
+          const recognition = speech.recognition('es-ES') // speech recognition module
+          recognition.start()
+          recognition.onresult = e => {
+            let result = e.results[0][0].transcript
+            speech.synthesis(result, 'es-ES');
+          }
+        }
+      }
+    });
+}
+
+const salarioMenor=()=>{
+  
+  let resultadoEmpleados;
+  
+  axios.get('http://localhost:3500/api/buscarmin/')
+  .then(res=>{
+  
+    resultadoEmpleados=(res.data.resultadoSalarios);
+    let contador=0;
+    for(let i of resultadoEmpleados){
+      contador++;
+      console.log(i.salario)
+      
+      if(contador===1){
+        console.log(i.salario)
+        speech.synthesis("El salario más bajo es "+i.salario +"euros que corresponde a "+i.nombre+ i.apellidos) // speech synthesis module
+
+        const recognition = speech.recognition('es-ES') // speech recognition module
+        recognition.start()
+        recognition.onresult = e => {
+          let result = e.results[0][0].transcript
+          speech.synthesis(result, 'es-ES');
+        }
+      }
+    }
+  });
+}
 //The virtual agent says hello to the user
 const saludar=()=>{
   
@@ -94,34 +149,20 @@ const eliminarEmpleado=(nombre,apellidos)=>{
   
   
 }
-/*
-const generarPDF=(nombre,apellidos)=>{
-  
-  let resultadoEmpleados;
+//help to the user
+const ayuda=()=>{
+  speech.synthesis(`Puedes pedirme que busque datos de los trabajadores en la base de datos`)
+      
+  const recognition = speech.recognition('es-ES') 
+  recognition.start()
+  recognition.onresult = e => {
+  let result = e.results[0][0].transcript
+  speech.synthesis(result, 'es-ES')
+  }
+}
 
-  axios.get('http://localhost:3500/api/ver/'+nombre+'&'+apellidos)
-  .then(res=>{
-    
-    resultadoEmpleados=(res.data.resultado);
-    console.log(resultadoEmpleados)
-    for(let i of resultadoEmpleados){
-      
-      
-      }
-
-      speech.synthesis(`Informe generado del empleado ${nombre} ${apellidos}`)
-      
-      const recognition = speech.recognition('es-ES') 
-      recognition.start()
-      recognition.onresult = e => {
-      let result = e.results[0][0].transcript
-      speech.synthesis(result, 'es-ES')
-      }
-    });
-  }*/
-//The virtual agent listens the user
 //Comamnds are the intents, the training to the bot
-const Dictaphone = () => {
+const Dictaphone = (props) => {
   
   const [message, setMessage] = useState('')
 
@@ -144,12 +185,28 @@ const Dictaphone = () => {
       callback: (nombre, apellidos, oficio, departamento, fecha_alta, salario, seguridadsocial, telefono  ) => setMessage(`#1: ${nombre}, #2: ${apellidos}`)
     },
     {
-      command: 'Eliminar el empleado * *',
+      command:  ['Eliminar el empleado * *', 'Borra el empleado * *', 'elimina * *','borra * *', 'quita el empleado * *', 'quita * *'],
       callback: (nombre,apellidos) => setMessage(eliminarEmpleado(nombre,apellidos))
+    },
+    {
+      command: ['muestra el salario más alto','busca el salario más alto', 'salario mayor', 'salario más alto','muestra salario más alto', 'muestra salario mayor'],
+      callback: ()=>setMessage(salarioMayor())
+
+    },
+    {
+      command: ['muestra el salario más bajo','busca el salario más bajo', 'salario menor', 'salario más bajo','muestra salario más bajo', 'muestra salario menor'],
+      callback: ()=>setMessage(salarioMenor())
+
     },
     {
       command: ['hola', 'saludos', 'buenos días','buenas tardes', 'Noa'],
       callback: () => setMessage(saludar()),
+      
+      matchInterim: true
+    },
+    {
+      command: ['ayuda', 'necesito ayuda', 'soporte', 'quiero ayuda', 'quiero pedir ayuda', 'help'],
+      callback: () => setMessage(ayuda()),
       
       matchInterim: true
     },
@@ -174,13 +231,13 @@ const Dictaphone = () => {
         <h1>Más tiempo<br></br>para<br></br>lo que<br></br>importa</h1>
       </div>
       <div className='parrafo'>
-        <p>Noa es un software de RR.HH. todo en uno para pymes.<br></br>
-        Ahorra tiempo en los procesos</p>
+        <p>{props.subtitulo}<br></br></p>
       </div>
       <div className="boton">
         <button className="button" onClick={SpeechRecognition.startListening}>Probar gratis</button>
         <p>{message}</p>
         <p>{transcript}</p>
+    
       </div>
       </div>
       <div className="imagen">
