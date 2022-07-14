@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 // importing AOS css style globally
 import 'aos/dist/aos.css'
 
+
 import AOS from 'aos'
 AOS.init()
 
@@ -14,7 +15,7 @@ AOS.init()
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <App />
   </React.StrictMode>
 );
 

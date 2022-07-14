@@ -1,211 +1,9 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-import speech from 'speech-js'
-import axios from 'axios'
 import imagenPortada from '../assets/images/portada.jpg'
+import { salarioMayor, salarioMenor, saludar, despedida, errorMessage, busqueda, eliminarEmpleado, ayuda, buscarEmpleadoAntiguo, buscarEmpleadoReciente} from './funciones'
 
-
-
-const salarioMayor=()=>{
-  
-    let resultadoEmpleados;
-    
-    axios.get('http://localhost:3500/api/buscarmax/')
-    .then(res=>{
-    
-      resultadoEmpleados=(res.data.resultadoSalarios);
-      let contador=0;
-      for(let i of resultadoEmpleados){
-        contador++;
-        console.log(i.salario)
-        
-        if(contador===1){
-          console.log(i.salario)
-          speech.synthesis("El salario más alto es "+i.salario +"euros que corresponde a "+i.nombre+ i.apellidos) // speech synthesis module
-
-          const recognition = speech.recognition('es-ES') // speech recognition module
-          recognition.start()
-          recognition.onresult = e => {
-            let result = e.results[0][0].transcript
-            speech.synthesis(result, 'es-ES');
-          }
-        }
-      }
-    });
-}
-
-const salarioMenor=()=>{
-  
-  let resultadoEmpleados;
-  
-  axios.get('http://localhost:3500/api/buscarmin/')
-  .then(res=>{
-  
-    resultadoEmpleados=(res.data.resultadoSalarios);
-    let contador=0;
-    for(let i of resultadoEmpleados){
-      contador++;
-      console.log(i.salario)
-      
-      if(contador===1){
-        console.log(i.salario)
-        speech.synthesis("El salario más bajo es "+i.salario +"euros que corresponde a "+i.nombre+ i.apellidos) // speech synthesis module
-
-        const recognition = speech.recognition('es-ES') // speech recognition module
-        recognition.start()
-        recognition.onresult = e => {
-          let result = e.results[0][0].transcript
-          speech.synthesis(result, 'es-ES');
-        }
-      }
-    }
-  });
-}
-//The virtual agent says hello to the user
-const saludar=()=>{
-  
-  speech.synthesis("Hola soy Noa tu asistente virtual de Recursos Humanos, ¿Qué necesitas?", 'es-ES') // speech synthesis module
-
-  const recognition = speech.recognition('es-ES') // speech recognition module
-  recognition.start()
-  recognition.onresult = e => {
-  let result = e.results[0][0].transcript
-  speech.synthesis(result, 'es-ES')
-  }
-}
-//The virtual agent says goodbye to the user
-const despedida=()=>{
-  
-  speech.synthesis(`Adiós, ¡rt
-  estoy para lo que necesites!`, 'es-ES') // speech synthesis module
-
-  const recognition = speech.recognition('es-ES') // speech recognition module
-  recognition.start()
-  recognition.onresult = e => {
-  let result = e.results[0][0].transcript
-  speech.synthesis(result, 'es-ES')
-  }
-}
-
-//error message
-const errorMessage=()=>{
-  
-  speech.synthesis(`Vaya... Estoy teniendo problemas de soporte del navegador`, 'es-ES') // speech synthesis module
-
-  const recognition = speech.recognition('es-ES') // speech recognition module
-  recognition.start()
-  recognition.onresult = e => {
-  let result = e.results[0][0].transcript
-  speech.synthesis(result, 'es-ES')
-  }
-}
-//search employee
-const busqueda=(nombre,apellidos)=>{
-  let resultadoEmpleados;
-  
-  axios.get('http://localhost:3500/api/ver/'+nombre+'&'+apellidos)
-  .then(res=>{
-    
-    resultadoEmpleados=(res.data.resultado);
-    console.log(resultadoEmpleados)
-    for(let i of resultadoEmpleados){
-      
-      speech.synthesis("Nombre del empleado "+i.nombre+". Apellidos del empleado "+i.apellidos+". Departamento "+i.departamento+". Fecha de ingreso en la empresa: "+i.fecha_alta+". Número de la seguridad social: "+i.seguridadsocial+". Ofício "+i.oficio+". Salario "+i.salario+"euros . Teléfono de contacto "+i.telefono)
-      
-      const recognition = speech.recognition('es-ES') 
-      recognition.start()
-      recognition.onresult = e => {
-      let result = e.results[0][0].transcript
-      speech.synthesis(result, 'es-ES')
-      }
-    }
-    
-  });
-  
-  
-}
-//delete employee
-const eliminarEmpleado=(nombre,apellidos)=>{
-  let resultadoEliminacion;
-  
-  axios.delete('http://localhost:3500/api/delete/'+nombre+'&'+apellidos)
-  .then(res=>{
-    
-    resultadoEliminacion=(res.data.resultado);
-    console.log(resultadoEliminacion)
-    
-    speech.synthesis(`El empleado ${nombre} ${apellidos} ha sido eliminado del sistema`)
-      
-    const recognition = speech.recognition('es-ES') 
-    recognition.start()
-    recognition.onresult = e => {
-    let result = e.results[0][0].transcript
-    speech.synthesis(result, 'es-ES')
-    }
-    
-    
-  });
-  
-  
-}
-//help to the user
-const ayuda=()=>{
-  speech.synthesis(`Puedes pedirme que busque datos de los trabajadores en la base de datos`)
-      
-  const recognition = speech.recognition('es-ES') 
-  recognition.start()
-  recognition.onresult = e => {
-  let result = e.results[0][0].transcript
-  speech.synthesis(result, 'es-ES')
-  }
-}
-
-const buscarEmpleadoAntiguo=()=>{
-  let resultadoAntiguo;
-  let contador=0;
-  axios.get('http://localhost:3500/api/buscarmaxFecha/')
-  .then(res=>{
-    resultadoAntiguo=(res.data.resultadosFechas2)
-    console.log(resultadoAntiguo)
-    for(let i of resultadoAntiguo){
-      contador++;
-      if(contador===1){
-        speech.synthesis(`El empleado más antiguo es ${i.nombre} ${i.apellidos} con fecha de alta en la empresa de ${i.fecha_alta}`)
-      
-        const recognition = speech.recognition('es-ES') 
-        recognition.start()
-        recognition.onresult = e => {
-        let result = e.results[0][0].transcript
-        speech.synthesis(result, 'es-ES')
-        }
-      }
-    }
-  })
-}
-
-const buscarEmpleadoReciente=()=>{
-  let contador=0;
-  let resultadoNuevo;
-  axios.get('http://localhost:3500/api/buscarminFecha/')
-  .then(res=>{
-      resultadoNuevo=(res.data.resultadosFechas)
-      console.log(resultadoNuevo)
-      for(let i of resultadoNuevo){
-        contador++;
-        if(contador===1){
-          speech.synthesis(`La incorporación más nueva es el empleado ${i.nombre} ${i.apellidos} con fecha de alta en la empresa de ${i.fecha_alta}`)
-      
-          const recognition = speech.recognition('es-ES') 
-          recognition.start()
-          recognition.onresult = e => {
-          let result = e.results[0][0].transcript
-          speech.synthesis(result, 'es-ES')
-          }
-        }
-      }
-  })
-}
 
 //Comamnds are the intents, the training to the bot
 const Dictaphone = (props) => {
@@ -217,9 +15,11 @@ const Dictaphone = (props) => {
 
   
   const commands = [
+    
     {
       command: ['Busca la incorporación más reciente', 'Busca el empleado más nuevo', 'empleado más reciente', 'incorporación más reciente', 'empleado nuevo', 'empleado más nuevo'],
-      callback: (nombre,apellidos) => setMessage(buscarEmpleadoReciente()),
+      callback: (nombre,apellidos) => 
+        setMessage(buscarEmpleadoReciente())
     },
     {
       command: ['Busca la incorporación más antigua', 'Busca el empleado más antiguo', 'empleado más antiguo', 'incorporación más antigua', 'empleado antiguo', 'empleado más antiguo', 'primer empleado de la compañía', 'primer empleado'],
@@ -271,12 +71,14 @@ const Dictaphone = (props) => {
     }
   ]
   
-
+  
   const { transcript, browserSupportsSpeechRecognition } = useSpeechRecognition({ commands })
 
   if (!browserSupportsSpeechRecognition) {
     return errorMessage();
   }
+
+  
 
   return (
     <div className="contenedor" id="funciones">
