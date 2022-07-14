@@ -4,6 +4,12 @@
   font-style: normal;
   font-weight: normal;
 }
+@font-face {
+  font-family: "spacegrotesk";
+  src: url("../src/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
 /*component Distaphone*/
 .contenedor{
   padding-top: 50px;
@@ -23,7 +29,7 @@
   margin:30px;
   height: 5vw;
   width: 20vw;
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-family: "roboto";
   border-color: transparent;
   background-color: #FFDE6A;
   font-size: 1.5vw;
@@ -35,7 +41,7 @@
   padding-left: 50px;
 }
 .portada{
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-family: "spacegrotesk";
   margin:30px;
   text-align: left;
   padding-left: 50px;
@@ -43,7 +49,7 @@
 
 }
 .parrafo{
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-family: "roboto";
   margin:30px;
   text-align: left;
   padding-left: 50px;
@@ -69,8 +75,8 @@
 
 .contenidoNavegacion{
   text-align: center;
-  font-family: "roboto";
-  font-size: 1.5vw;
+  font-family: "spacegrotesk";
+  font-size: 1.8vw;
   color: black;
 }
 .logo{
@@ -85,6 +91,8 @@
   max-width: 200px;
   background-color: #ffffff;
   font-variant: small-caps;
+  font-family: "spacegrotesk";
+  font-size: 1.8vw;
 }
 .contenidoNavResponsive input[type="checkbox"], .respmenu .fa-bars, .respmenu .fa-times {
   position: absolute;
@@ -123,7 +131,7 @@
   position: relative;
   background-color: #ffffff;
   min-height: 48px;
-  font-family: "roboto";
+  font-family: "spacegrotesk";
   font-size: 2vw;
   color: black;
   
@@ -175,7 +183,6 @@ li{
   align-items: center;
   padding-left: 50px;
   font-size: 1.5vw;
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
   padding-bottom: 100px;
   margin:40px
 }
@@ -183,7 +190,7 @@ li{
   display: flex;
   flex-direction: column;
   font-size: 1.5vw;
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-family: "roboto";
   
 }
 .tituloPorque{
@@ -191,11 +198,13 @@ li{
   text-align: left;
   font-size: 1.5vw;
   font-weight: bold;
+  font-family: "spacegrotesk";
 }
 .subtituloPorque{
   margin-bottom: 20px;
   text-align: left;
   font-size: 1.5vw;
+  font-family: "spacegrotesk";
 }
 @media only screen and (max-width: 800px) {
 
@@ -225,7 +234,8 @@ li{
   justify-content: center;
   background-color: black;
   color: #ffffff;
-  font-size: 1.5vw;
+  font-size: 1.8vw;
+  font-family: "spacegrotesk";
 }
 .copy{
   padding: 20px;
@@ -245,30 +255,29 @@ li{
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
-  font-size: 1.5vw;
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-size: 1.8vw;
   padding-bottom: 100px;
   margin:40px
 }
 .tituloPrecios{
   text-align: center;
-  font-size: 1.5vw;
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-size: 1.8vw;
+  font-family: "spacegrotesk";
   font-weight: bold;
   
 }
 .subtituloPrecios{
   text-align: center;
-  font-size: 1.5vw;
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-size: 1.8vw;
+  font-family: "spacegrotesk";
 }
 .imagenPrecios{
   padding: 30px;
 }
 .contenidoPrecios{
   text-align: center;
-  font-size: 1.5vw;
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-size: 1.8vw;
+  font-family: "roboto";
   
 }
 
@@ -279,8 +288,7 @@ li{
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: 1.5vw;
-  font-family: Open Sans,'Helvetica','Arial',sans-serif;
+  font-size: 1.8vw;
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 100px;
@@ -288,6 +296,7 @@ li{
 }
 .tituloContacto{
   font-weight: bold;
+  font-family: "spacegrotesk";
 }
 
 @media only screen and (max-width: 800px) {
@@ -296,11 +305,12 @@ li{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1.5vw;
-    font-family: Open Sans,'Helvetica','Arial',sans-serif;
+    font-size: 1.8vw;
+    font-family: "spacegrotesk";
     padding-left: 30px;
     padding-right: 30px;
-    padding-bottom: 100px;
+    padding-bottom: 200px;
+    margin-bottom: 200px;
     margin: 30px;
     text-align: center;
   }

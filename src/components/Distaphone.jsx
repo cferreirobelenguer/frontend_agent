@@ -161,6 +161,52 @@ const ayuda=()=>{
   }
 }
 
+const buscarEmpleadoAntiguo=()=>{
+  let resultadoAntiguo;
+  let contador=0;
+  axios.get('http://localhost:3500/api/buscarmaxFecha/')
+  .then(res=>{
+    resultadoAntiguo=(res.data.resultadosFechas2)
+    console.log(resultadoAntiguo)
+    for(let i of resultadoAntiguo){
+      contador++;
+      if(contador===1){
+        speech.synthesis(`El empleado más antiguo es ${i.nombre} ${i.apellidos} con fecha de alta en la empresa de ${i.fecha_alta}`)
+      
+        const recognition = speech.recognition('es-ES') 
+        recognition.start()
+        recognition.onresult = e => {
+        let result = e.results[0][0].transcript
+        speech.synthesis(result, 'es-ES')
+        }
+      }
+    }
+  })
+}
+
+const buscarEmpleadoReciente=()=>{
+  let contador=0;
+  let resultadoNuevo;
+  axios.get('http://localhost:3500/api/buscarminFecha/')
+  .then(res=>{
+      resultadoNuevo=(res.data.resultadosFechas)
+      console.log(resultadoNuevo)
+      for(let i of resultadoNuevo){
+        contador++;
+        if(contador===1){
+          speech.synthesis(`La incorporación más nueva es el empleado ${i.nombre} ${i.apellidos} con fecha de alta en la empresa de ${i.fecha_alta}`)
+      
+          const recognition = speech.recognition('es-ES') 
+          recognition.start()
+          recognition.onresult = e => {
+          let result = e.results[0][0].transcript
+          speech.synthesis(result, 'es-ES')
+          }
+        }
+      }
+  })
+}
+
 //Comamnds are the intents, the training to the bot
 const Dictaphone = (props) => {
   
@@ -171,6 +217,14 @@ const Dictaphone = (props) => {
 
   
   const commands = [
+    {
+      command: ['Busca la incorporación más reciente', 'Busca el empleado más nuevo', 'empleado más reciente', 'incorporación más reciente', 'empleado nuevo', 'empleado más nuevo'],
+      callback: (nombre,apellidos) => setMessage(buscarEmpleadoReciente()),
+    },
+    {
+      command: ['Busca la incorporación más antigua', 'Busca el empleado más antiguo', 'empleado más antiguo', 'incorporación más antigua', 'empleado antiguo', 'empleado más antiguo', 'primer empleado de la compañía', 'primer empleado'],
+      callback: (nombre,apellidos) => setMessage(buscarEmpleadoAntiguo()),
+    }, 
     {
       command: 'Busca el empleado * *',
       callback: (nombre,apellidos) => setMessage(busqueda(nombre,apellidos)),
@@ -227,7 +281,7 @@ const Dictaphone = (props) => {
   return (
     <div className="contenedor" id="funciones">
       <div className="portadaTexto">
-      <div className="portada">
+      <div className="portada" data-aos="fade-left">
         <h1>Más tiempo<br></br>para<br></br>lo que<br></br>importa</h1>
       </div>
       <div className='parrafo'>
