@@ -1,8 +1,8 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import imagenPortada from '../assets/images/portada.jpg'
-import { salarioMayor, salarioMenor, saludar, despedida, errorMessage, busqueda, eliminarEmpleado, ayuda, buscarEmpleadoAntiguo, buscarEmpleadoReciente} from './funciones'
+import {salarioMayor, salarioMenor, saludar, despedida, errorMessage, busqueda, eliminarEmpleado, ayuda, buscarEmpleadoAntiguo, buscarEmpleadoReciente} from './funciones'
 
 
 //Comamnds are the intents, the training to the bot
@@ -34,10 +34,7 @@ const Dictaphone = (props) => {
       command: ['adiós', 'hasta otra', 'luego hablamos','hasta luego'],
       callback: () => setMessage(despedida())
     },
-    {
-      command: 'Introduce los datos del siguiente empleado: nombre * , apellidos * , oficio * , departamento * , fecha de alta * , salario * , seguridad social * , teléfono * ',
-      callback: (nombre, apellidos, oficio, departamento, fecha_alta, salario, seguridadsocial, telefono  ) => setMessage(`#1: ${nombre}, #2: ${apellidos}`)
-    },
+  
     {
       command:  ['Eliminar el empleado * *', 'Borra el empleado * *', 'elimina * *','borra * *', 'quita el empleado * *', 'quita * *'],
       callback: (nombre,apellidos) => setMessage(eliminarEmpleado(nombre,apellidos))

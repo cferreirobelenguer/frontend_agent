@@ -206,3 +206,21 @@ export const buscarEmpleadoReciente = () => {
             }
         })
 }
+
+export const agregarUsuarios=(nombre, apellidos, oficio, departamento, fecha_alta, salario, seguridadsocial, telefono)=>{
+    console.log("Hola mundo")
+    let resultadoAgregar;
+    axios.post('htttp://localhost:3500/api/save/')
+    .then(res=>{
+        resultadoAgregar=(res.data.datosEmpresa)
+        console.log(resultadoAgregar)
+        speech.synthesis(`La información del empleado ${nombre} ${apellidos} ha sido guardada en la base de datos`)
+
+                    const recognition = speech.recognition('es-ES')
+                    recognition.start()
+                    recognition.onresult = e => {
+                        let result = e.results[0][0].transcript
+                        speech.synthesis(result, 'es-ES')
+                    }
+    })
+}
