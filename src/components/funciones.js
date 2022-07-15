@@ -6,7 +6,7 @@ export const salarioMenor = () => {
     
     let resultadoEmpleados;
     
-    axios.get('http://localhost:3500/api/buscarmax/')
+    axios.get('https://virtualassistantnoa.herokuapp.com/api/buscarmax/')
         .then(res => {
             
             resultadoEmpleados = (res.data.resultadoSalarios);
@@ -34,7 +34,7 @@ export const salarioMayor = () => {
     
     let resultadoEmpleados;
 
-    axios.get('http://localhost:3500/api/buscarmin/')
+    axios.get('https://virtualassistantnoa.herokuapp.com/api/buscarmin/')
         .then(res => {
 
             resultadoEmpleados = (res.data.resultadoSalarios);
@@ -100,7 +100,7 @@ export const errorMessage = () => {
 export const busqueda = (nombre, apellidos) => {
     let resultadoEmpleados;
     
-    axios.get('http://localhost:3500/api/ver/' + nombre + '&' + apellidos)
+    axios.get('https://virtualassistantnoa.herokuapp.com/api/ver/' + nombre + '&' + apellidos)
         .then(res => {
 
             resultadoEmpleados = (res.data.resultado);
@@ -125,7 +125,7 @@ export const busqueda = (nombre, apellidos) => {
 export const eliminarEmpleado = (nombre, apellidos) => {
     let resultadoEliminacion;
     
-    axios.delete('http://localhost:3500/api/delete/' + nombre + '&' + apellidos)
+    axios.delete('https://virtualassistantnoa.herokuapp.com/api/delete/' + nombre + '&' + apellidos)
         .then(res => {
 
             resultadoEliminacion = (res.data.resultado);
@@ -163,7 +163,7 @@ export const buscarEmpleadoAntiguo = () => {
     
     let resultadoAntiguo;
     let contador = 0;
-    axios.get('http://localhost:3500/api/buscarmaxFecha/')
+    axios.get('https://virtualassistantnoa.herokuapp.com/api/buscarmaxFecha/')
         .then(res => {
             resultadoAntiguo = (res.data.resultadosFechas2)
             console.log(resultadoAntiguo)
@@ -187,7 +187,7 @@ export const buscarEmpleadoReciente = () => {
 
     let contador = 0;
     let resultadoNuevo;
-    axios.get('http://localhost:3500/api/buscarminFecha/')
+    axios.get('https://virtualassistantnoa.herokuapp.com/api/buscarminFecha/')
         .then(res => {
             resultadoNuevo = (res.data.resultadosFechas)
             console.log(resultadoNuevo)
@@ -210,7 +210,7 @@ export const buscarEmpleadoReciente = () => {
 export const agregarUsuarios=(nombre, apellidos, oficio, departamento, fecha_alta, salario, seguridadsocial, telefono)=>{
     console.log("Hola mundo")
     let resultadoAgregar;
-    axios.post('htttp://localhost:3500/api/save/')
+    axios.post('https://virtualassistantnoa.herokuapp.com/api/save/')
     .then(res=>{
         resultadoAgregar=(res.data.datosEmpresa)
         console.log(resultadoAgregar)
