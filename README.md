@@ -4,6 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This proyect is a RR.HH virtual agent. It has an API REST with mongoDB database and it searchs information in this when the user orders something.
 
+![image](https://user-images.githubusercontent.com/88061350/179427352-0bffb95a-5e3d-486e-84d3-307d92694e23.png)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
